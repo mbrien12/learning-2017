@@ -10,8 +10,7 @@ $(document).ready(function() {
 
         $(".quote").html(json.quote);
         $(".author").html(json.author);
-        $('#twitter-share-button').attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('"' + quote + '" ' + author));
-        console.log(quote, author);
+        $('.twitter-share-button').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + quote + '" ' + author));
         });
     });
 });
@@ -38,6 +37,6 @@ window.twttr = (function(d, s, id) {
   };
 
   return t;
-}(document, "script", "twitter-wjs"));
+}(document, "script", "twitter-wjs")); 
 
 
