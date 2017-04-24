@@ -96,16 +96,75 @@ textarea {
    ========================================================================== */
 
 
+body {
+    font-family: 'Libre Franklin', sans-serif;
+}
+
 main {
-    margin: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 
+section {
+    margin: 100px 100px 100px 300px;
+    width: 50%;
+}
+
+h1 {
+    color: white;
+}
+
+button {
+    border-radius: 3px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px;
+    padding: 3px;
+    margin-right: 20px;
+    outline: none;
+    
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+
+}
+
+/* Side bar https://css-tricks.com/forums/topic/getting-my-sidebar-100-height/ */ 
 
 
 
+nav {
+border-top: 1px solid black;
+padding:30px;
+background:#343434;
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+height: 100%;
+}
 
 
+/* ----------- Responsive----------- */
+
+@media only screen 
+and (max-width: 850px) {
+    section {
+        margin: 100px 150px 50px 150px;
+    }
+}
+
+@media only screen 
+and (min-width: 320px)
+and (max-width: 568px) {
+    section {
+        margin: 100px 50px 50px 50px;
+    }
+}
 
 
 

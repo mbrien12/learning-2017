@@ -10,7 +10,7 @@
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
-
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -22,19 +22,21 @@
         <![endif]-->
 
     <!-- Add your site or application content here -->
+
+        <nav>
+            <h1>Random quote <br> machine</h1>
+            <div id="buttons">
+                <button class="new_quote button">New quote</button>
+                <a class="twitter-share-button" data-size="large"> Tweet</a>
+            </div>
+        </nav>
+    </div>
+
     <main>
-        <h1 class="quote">"We can learn to see each other and see ourselves in each other and recognize that human beings are more alike than
-            we are unalike"</h1>
-
-        <div>
-            <h3 class="author">Maya Angelou
-                <h3>
-        </div>
-
-        <button class="new_quote">New quote</button>
-       <a class="twitter-share-button" data-size="large"> Tweet</a>
-
-
+        <section>
+            <h2 class="quote">"We can learn to see each other and see ourselves in each other and recognize that human beings are more alike than we are unalike"</h2>
+                <h3 class="author">Maya Angelou<h3>
+        </section>
     </main>
 
 
@@ -51,8 +53,8 @@
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
             (function (b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
-                function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+                b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+                    function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
                 e = o.createElement(i); r = o.getElementsByTagName(i)[0];
                 e.src = 'https://www.google-analytics.com/analytics.js';
                 r.parentNode.insertBefore(e, r)
