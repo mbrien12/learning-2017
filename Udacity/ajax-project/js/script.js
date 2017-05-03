@@ -20,7 +20,6 @@ function loadData() {
     var address = streetName + ', ' + cityName;
 
 
-
     // Greeting
     $greeting.text('So you want to live at ' + address + '?');
 
@@ -32,10 +31,28 @@ function loadData() {
     $body.append(backgroundImage);
 
 
+    // NYT AJAX request
+
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    url += '?' + $.param({
+        'api-key': "951b40500d3f459b95d23b5dfdba9a05",
+        'q': cityName
+    });
+    $.ajax({
+        url: url,
+        method: 'GET',
+    }).done(function (result) {
+        console.log(result);
+    }).fail(function (err) {
+        throw err;
+    });
 
 
 
-    return false;
+
+
+
+return false;
 };
 
 // When someone hits submit - it will load 'loadData function' above
