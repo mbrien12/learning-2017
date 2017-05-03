@@ -21,7 +21,7 @@ function loadData() {
 
 
     // Greeting
-    $greeting.text('So you want to live at ' + address + '?');
+    $greeting.text('So you want to live in ' + address + '?');
 
     // Background image
 
@@ -33,26 +33,32 @@ function loadData() {
 
     // NYT AJAX request
 
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-    url += '?' + $.param({
-        'api-key': "951b40500d3f459b95d23b5dfdba9a05",
-        'q': cityName
-    });
-    $.ajax({
-        url: url,
-        method: 'GET',
-    }).done(function (result) {
-        console.log(result);
-    }).fail(function (err) {
-        throw err;
-    });
+    var newYorkTimesUrl = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + cityName + '&sort=newest&api-key=951b40500d3f459b95d23b5dfdba9a05'
+
+    $.getJSON(newYorkTimesUrl, function (data) {
+        console.log(data);
+
+        $nytHeaderElem.text('New York Times articles about ' + cityName);
+
+        articles = data.response.docs;
+
+
+        for (var i = 0; i < articles.length; i++) {
+            var article = articles[i];
+
+            $nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + article.headline.main + '</a>' +
+                '<p>' + article.snippet + '</p>' +
+                '</li>');
+        };
+    })
 
 
 
 
 
 
-return false;
+
+    return false;
 };
 
 // When someone hits submit - it will load 'loadData function' above
