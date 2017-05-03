@@ -33,21 +33,20 @@ function loadData() {
 
     // NYT AJAX request
 
-    var newYorkTimesUrl = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + cityName + '&sort=newest&api-key=951b40500d3f459b95d23b5dfdba9a05'
+    var guardianUrl = 'https://content.guardianapis.com/search?q=' + cityName + '&order-by=newest&api-key=475649b2-5ea2-4ea3-aa59-2ceeb6bab09e '
 
-    $.getJSON(newYorkTimesUrl, function (data) {
+    $.getJSON(guardianUrl, function (data) {
         console.log(data);
 
-        $nytHeaderElem.text('New York Times articles about ' + cityName);
+        $nytHeaderElem.text('Guardian articles about ' + cityName);
 
-        articles = data.response.docs;
-
+        articles = data.response.results;
 
         for (var i = 0; i < articles.length; i++) {
             var article = articles[i];
 
-            $nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + article.headline.main + '</a>' +
-                '<p>' + article.snippet + '</p>' +
+            $nytElem.append('<li class="article">' +  '<p>' + article.sectionName + '</p>' +
+             '<a href="' + article.webUrl + '">' + article.webTitle + '</a>' +
                 '</li>');
         };
     })
