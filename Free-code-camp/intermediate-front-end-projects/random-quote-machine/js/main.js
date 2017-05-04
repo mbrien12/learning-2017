@@ -7,14 +7,22 @@ $(document).ready(function() {
         $.getJSON("http://quotes.stormconsultancy.co.uk/random.json", function(json) {
         var quote = json.quote;
         var author = json.author;
+        var tweet = "https://twitter.com/intent/tweet?text= " + quote;
 
         $(".quote").html(json.quote);
         $(".author").html(json.author);
-        $('.twitter-share-button').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + quote + '" ' + author));
+        console.log(tweet);
+        
         });
     });
 });
 
+//Tweet button - trying to replace href from html with this - not working :(
+  $(document).ready(function() {
+    $(".twitter-share-button").on("click", function() {
+      $("a.twitter-share-button").attr('href', "https://twitter.com/intent/tweet?text=yes");
+    })
+  })
 
 
 
