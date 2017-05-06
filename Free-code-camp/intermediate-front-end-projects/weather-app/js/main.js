@@ -1,4 +1,10 @@
 
+//Get location 
+
+navigator.geolocation.getCurrentPosition(function(position) {
+  console.log(position.coords.latitude, position.coords.longitude);
+});
+
 
 
 $.ajax({
@@ -7,19 +13,28 @@ $.ajax({
     success: function (data) {
         console.log(data); //remove at end
         console.log(data.currently.temperature); //remove at end
-        function toCelsius(f) {
-            return (5 / 9) * (f - 32);
 
+        // FUNCTION TO CONVERT TO CELSIUS AND DISPLAY ON PAGE
+        function toCelsius(f) { // equation to conver from fahrenheit to celsius
+            return (5 / 9) * (f - 32);
         }
-        var celsius = toCelsius(data.currently.temperature);
-        var celsiusRound = Math.round(celsius);
-        // calculation to return Centigrade as a variable, then put below
-        $(".temp").text(celsiusRound); //changes temp (to F)
-    }
+        var celsius = toCelsius(data.currently.temperature); // converts from API
+        var celsiusRound = Math.round(celsius); //rounds up number
+        $(".temp").text(celsiusRound); //displays on page
+
+        // FUNCTION TO CONVERT TO FAHRENHEIT ON CLICK
+        $(".metric").on('click',function () {
+            $(".temp").text(data.currently.temperature);
+            $(".metric").text(" F"); // Need to revert back to original state...!!?
+    })
+
+
+
+}
 })
+
 
 // If temp below X show winter > if temp inbetween X-X show grey and if above X show summer
 
-// on click of temp (as link - underline?) - translate to F.
 
 //If Precipprobably 0 - show sun and sunglasses message if 1 show rain and umbrella message
