@@ -95,9 +95,32 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background: url("https://unsplash.it/1920/1080?image=871") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
 
 
+.center_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.center {
+    max-width: 50%;
+    margin-top: 240px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.advice {
+    float: right;
+}
 
 
 
