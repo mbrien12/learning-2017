@@ -8,32 +8,9 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var geoCodeAPI = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude + ','+longitude+ '&key=AIzaSyB3mYEF889VBLg_-ATuGqi8Vs9Ri9iSowo';
 
     $.getJSON(geoCodeAPI, function (data) {
-    console.log(data.results[0].address_components);
+    console.log(data.results[0].address_components[2].long_name); // this returns city name
+    var city = data.results[0].address_components[2].long_name; // bringing back URL instead of name :S - try this http://stackoverflow.com/questions/6359995/get-city-from-geocoder-results 
 
-var arrAddress = data.results[0].address_components;
-var itemRoute='';
-var itemLocality='';
-var itemCountry='';
-var itemPc='';
-var itemSnumber='';
-
-// iterate through address_component array
-$.each(arrAddress, function (i, address_component) {
-    console.log('address_component:'+i);
-
-    if (address_component.types[0] == "route"){
-        console.log(i+": route:"+address_component.long_name);
-        itemRoute = address_component.long_name;
-    }
-
-    if (address_component.types[0] == "locality"){
-        console.log("town:"+address_component.long_name);
-        var itemLocality = address_component.long_name;
-    }
-
-    //return false; // break the loop  
-    console.log("your city is "+ itemLocality);
-}) 
  
 });
 
@@ -44,7 +21,7 @@ $.each(arrAddress, function (i, address_component) {
     
     console.log(geoCodeAPI);
     console.log(latitude, longitude);
-    $(".location").text("XX");
+    $(".location").text(city);
 });
 
 
