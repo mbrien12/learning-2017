@@ -5,23 +5,22 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    var geoCodeAPI = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude + ','+longitude+ '&key=AIzaSyB3mYEF889VBLg_-ATuGqi8Vs9Ri9iSowo';
+   var geoCodeAPI = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude + ','+longitude+ '&key=AIzaSyB3mYEF889VBLg_-ATuGqi8Vs9Ri9iSowo';
 
     $.getJSON(geoCodeAPI, function (data) {
     console.log(data.results[0].address_components[2].long_name); // this returns city name
     var city = data.results[0].address_components[2].long_name; // bringing back URL instead of name :S - try this http://stackoverflow.com/questions/6359995/get-city-from-geocoder-results 
+    $(".location").text(city);
 
  
 });
 
 
 
-    var city = geoCodeAPI
 
     
     console.log(geoCodeAPI);
     console.log(latitude, longitude);
-    $(".location").text(city);
 });
 
 
