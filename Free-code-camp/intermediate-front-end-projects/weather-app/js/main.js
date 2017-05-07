@@ -14,19 +14,9 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
  
 });
-
-
-
-
-    
-    console.log(geoCodeAPI);
     console.log(latitude, longitude);
-});
-
-
-
-$.ajax({
-    url: "https://api.darksky.net/forecast/ace5824d768c604c262956cc4d59425d/51.520648,-0.066424",
+    $.ajax({
+    url: 'https://api.darksky.net/forecast/ace5824d768c604c262956cc4d59425d/'+latitude + ','+longitude,
     dataType: "jsonp",
     success: function (data) {
         console.log(data); //remove at end
@@ -49,9 +39,13 @@ $.ajax({
 
 
 }
+});
+
+
+
 })
 
-// Convert lat and long to city.. in geolocation above
+//Update API with lat and long values
 
 // If temp below X show winter > if temp inbetween X-X show grey and if above X show summer
 

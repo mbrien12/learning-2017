@@ -55,3 +55,5 @@ navigator.geolocation.getCurrentPosition(success, error);
 https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyB3mYEF889VBLg_-ATuGqi8Vs9Ri9iSowo
 
 
+// static weather api
+    url: "https://api.darksky.net/forecast/ace5824d768c604c262956cc4d59425d/51.520648,-0.066424",
