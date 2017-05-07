@@ -48,7 +48,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 
 
-// If temp below X show winter > if temp inbetween X-X show grey and if above X show summer
+// If temp below X show winter > if temp inbetween X-X show grey and if above X show summer (account for both F & C). Source three images from unsplash.it
 
 
 //If Precipprobably 0 - show sun and sunglasses message if 1 show rain and umbrella message
