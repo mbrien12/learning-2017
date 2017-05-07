@@ -11,10 +11,11 @@ navigator.geolocation.getCurrentPosition(function(position) {
     console.log(data.results[0].address_components[2].long_name); // this returns city name
     var city = data.results[0].address_components[2].long_name; // bringing back URL instead of name :S - try this http://stackoverflow.com/questions/6359995/get-city-from-geocoder-results 
     $(".location").text(city);
-
+    console.log(latitude, longitude);
  
 });
-    console.log(latitude, longitude);
+
+// weather api
     $.ajax({
     url: 'https://api.darksky.net/forecast/ace5824d768c604c262956cc4d59425d/'+latitude + ','+longitude,
     dataType: "jsonp",
@@ -45,7 +46,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 })
 
-//Update API with lat and long values
+
 
 // If temp below X show winter > if temp inbetween X-X show grey and if above X show summer
 
