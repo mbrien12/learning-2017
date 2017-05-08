@@ -1,4 +1,12 @@
 
+// Hide messaging on page load
+
+$(document).ready(function() {
+    $('.icon, .advice').hide();
+
+});
+
+
 //Get location 
 
 navigator.geolocation.getCurrentPosition(function (position) {
@@ -10,7 +18,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     $.getJSON(geoCodeAPI, function (data) {
         console.log(data.results[0].address_components[2].long_name); // this returns city name
         var city = data.results[0].address_components[2].long_name; // bringing back URL instead of name :S - try this http://stackoverflow.com/questions/6359995/get-city-from-geocoder-results 
-        $(".location").text(city);
+        $(".location").text(city + ' is ' );
         console.log(latitude, longitude);
 
     });
@@ -30,7 +38,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
             }
             var celsius = toCelsius(data.currently.temperature); // converts from API
             var celsiusRound = Math.round(celsius); //rounds up number
-            $(".temp").text(celsiusRound); //displays on page
+            $(".temp").append('<span>' +celsiusRound + '<span class="metric">&#8451;</span></span>'); //displays on page
+            
 
 
             // FUNCTION TO CONVERT TO FAHRENHEIT ON CLICK
@@ -58,11 +67,15 @@ navigator.geolocation.getCurrentPosition(function (position) {
         //UPDATING ICON AND MESSAGE
 
         if (data.currently.precipProbability == 1) {
+            $('.icon').show();
             $('.icon').attr('src', 'images/rain.png');
             $('.advice').text("Don't forget your umbrella today!");
+            $('.advice').show();
         } else {
             $('.icon').attr('src', 'images/white-sun.png');
+            $('.icon').show();
             $('.advice').text("You may need some sunglasses today!");
+            $('.advice').show();
         }
 
 

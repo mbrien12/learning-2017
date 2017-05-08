@@ -57,3 +57,19 @@ https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&ke
 
 // static weather api
     url: "https://api.darksky.net/forecast/ace5824d768c604c262956cc4d59425d/51.520648,-0.066424",
+
+    // changing images
+
+    // UPDATING BACKGROUND IMAGE
+
+            var cold = 'https://unsplash.com/photos/NKSGuJzExIo';
+            var average = 'https://unsplash.com/photos/Kc7xqFTtcc4';
+            var hot = 'https://unsplash.it/1920/1080?image=871';
+
+            if (celsiusRound < 20) {
+                $('body').css('background', 'url(' + cold + ')');
+            } else if (celsiusRound < 30) {
+                $('body').css('background', 'url(' + average + ')');
+            } else {
+                $('body').css('background', 'url(' + hot + ')');
+            }
