@@ -1,7 +1,7 @@
 
 // Hide messaging on page load
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.icon, .advice').hide();
 
 });
@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     $.getJSON(geoCodeAPI, function (data) {
         console.log(data.results[0].address_components[2].long_name); // this returns city name
         var city = data.results[0].address_components[2].long_name; // bringing back URL instead of name :S - try this http://stackoverflow.com/questions/6359995/get-city-from-geocoder-results 
-        $(".location").text(city + ' is ' );
+        $(".location").text(city + ' is ');
         console.log(latitude, longitude);
 
     });
@@ -33,55 +33,66 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
 
             // FUNCTION TO CONVERT TO CELSIUS AND DISPLAY ON PAGE
-            function toCelsius(f) { // equation to conver from fahrenheit to celsius
+            function toCelsius(f) { // equation to convert from fahrenheit to celsius
                 return (5 / 9) * (f - 32);
             }
             var celsius = toCelsius(data.currently.temperature); // converts from API
             var celsiusRound = Math.round(celsius); //rounds up number
-            $(".temp").append('<span>' +celsiusRound + '<span class="metric">&#8451;</span></span>'); //displays on page
-            
+            $(".temp").text(celsiusRound); //displays on page
+            $(".metric").text('\u2103');
+
 
 
             // FUNCTION TO CONVERT TO FAHRENHEIT ON CLICK
             $(".metric").on('click', function () {
-                $(".temp").text(data.currently.temperature);
-                $(".metric").text(" F"); // Need to revert back to original state...!!?
+                $(".metric").toggleClass('fahrenheit');
+                $(".metric").toggleClass('celsius');
 
-            })
+                if ($(this).hasClass('fahrenheit')) {
+                    $(".temp").text(data.currently.temperature);
+                    $(".metric").text(" F");
+                    return;
+                }
+                $(".temp").text(celsiusRound); //displays on page
+                $(".metric").text('\u2103');
+            });
 
-       // UPDATING BACKGROUND IMAGE
 
-            var cold = 'https://unsplash.it/1920/1080?image=1036';
-            var average = 'https://unsplash.it/1920/1080?image=1061';
-            var hot = 'https://unsplash.it/1920/1080?image=871';
 
-            if (celsiusRound < 10) {
-                $('body').css('background-image', 'url(' + cold + ')');
-            } else if (celsiusRound < 20) {
-                $('body').css('background-image', 'url(' + average + ')');
-            } else {
-                $('body').css('background-image', 'url(' + hot + ')');
+
+                // UPDATING BACKGROUND IMAGE
+
+                var cold = 'https://unsplash.it/1920/1080?image=1036';
+                var average = 'https://unsplash.it/1920/1080?image=1061';
+                var hot = 'https://unsplash.it/1920/1080?image=871';
+
+                if (celsiusRound < 10) {
+                    $('body').css('background-image', 'url(' + cold + ')');
+                } else if (celsiusRound < 20) {
+                    $('body').css('background-image', 'url(' + average + ')');
+                } else {
+                    $('body').css('background-image', 'url(' + hot + ')');
+                }
+
+
+                //UPDATING ICON AND MESSAGE
+
+                if (data.currently.precipProbability == 1) {
+                    $('.icon').show();
+                    $('.icon').attr('src', 'images/rain.png');
+                    $('.advice').text("Don't forget your umbrella today!");
+                    $('.advice').show();
+                } else {
+                    $('.icon').attr('src', 'images/white-sun.png');
+                    $('.icon').show();
+                    $('.advice').text("You may need some sunglasses today!");
+                    $('.advice').show();
+                }
+
+
+
+
             }
-
-        
-        //UPDATING ICON AND MESSAGE
-
-        if (data.currently.precipProbability == 1) {
-            $('.icon').show();
-            $('.icon').attr('src', 'images/rain.png');
-            $('.advice').text("Don't forget your umbrella today!");
-            $('.advice').show();
-        } else {
-            $('.icon').attr('src', 'images/white-sun.png');
-            $('.icon').show();
-            $('.advice').text("You may need some sunglasses today!");
-            $('.advice').show();
-        }
-
-
-
-
-        }
 
     });
 
