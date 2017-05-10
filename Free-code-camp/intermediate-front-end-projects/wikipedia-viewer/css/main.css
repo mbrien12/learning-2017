@@ -96,7 +96,20 @@ textarea {
    ========================================================================== */
 
 
+.center_container {
+display: flex;
+align-items: center;
+justify-content: center;
+}
 
+.center {
+    max-width: 50%;
+    margin-top: 200px;
+}
+
+#search-box {
+    width: 330px;
+}
 
 
 
