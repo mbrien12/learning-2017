@@ -1,34 +1,43 @@
 
-function searchWikipedia() {
 
-    var $wikiElem = $('wikipedia-links');
+//Autocomplete searchbox
+$("#searchbox").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url: "http://en.wikipedia.org/w/api.php",
+            dataType: "jsonp",
+            data: {
+                'action': "opensearch",
+                'format': "json",
+                'search': request.term
+            },
+            success: function (data) {
+                response(data[1]);
+                console.log(data[1]);
 
-// Search
+            }
 
-$("#search-box").on("keyup", function(){
-    var searchRequest = $(this).val(); //this stores search input. Now need to search API 'onclick' of submit
-    console.log(searchRequest); // does not seem to be saving??
-})
 
-// Wikipedia AJAX request with JSONP
 
-$("#search").on('click', function() {
+        });
 
-$.ajax({
-url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchRequest,
-datatype: "jsonp",
-success: function(data) {
-    for (var i = 0; i <= data[1].length - 1; i++) {
-                var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a></li>';
-                $.wikiElem.append(pageLink);
-                console.log(pageLink); //
-};
-}
+        $(document).ready(function () {
+            $('#searchbox').on('autocompletechange change', function () {
+                var input = this.value
+                $('#results').html('You selected: ' + input);
+                console.log(input);
+            }).change();
+        });
+
+    }
 });
 
 
 
-})
 
-return false
-};
+// Need to store search term as variable and print out when click search
+
+// Use this variable to complete search term on wiki API > print to page
+
+// Random API button ( do last)
+
