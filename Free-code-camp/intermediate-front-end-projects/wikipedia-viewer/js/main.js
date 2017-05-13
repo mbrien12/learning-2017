@@ -24,7 +24,8 @@ $("#searchbox").autocomplete({
         // To save autocomplete selection 
         $("#searchbox").autocomplete({
             select: function (event, ui) {
-                console.log(ui);
+                var searchTerm = ui.item.label
+                console.log(searchTerm);
             }
         });
 
