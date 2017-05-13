@@ -50,3 +50,38 @@ console.log(search);
   for (var i = 0; i <= data[1].length - 1; i++) {
                 var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a></li>';
                 document.getElementById("results").append(pageLink);
+
+
+                //add back in?
+
+
+        // To save autocomplete selection 
+
+        $(document).ready(function () { //used this http://stackoverflow.com/questions/19675069/how-to-get-value-of-selected-item-in-autocomplete 
+            $('#searchbox').on('autocompletechange change', function () {
+                var searchTerm = this.value
+                console.log(searchTerm);
+            }).change();
+        });
+
+    }
+});
+
+
+
+////newest
+
+ $(document).ready(function () { //used this http://stackoverflow.com/questions/19675069/how-to-get-value-of-selected-item-in-autocomplete 
+            $('#searchbox').on('autocompletechange change', function () {
+                var searchTerm = this.value
+                
+                $.ajax({
+                    url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm,
+                    datatype: "jsonp",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
+                
+            }).change();
+        });

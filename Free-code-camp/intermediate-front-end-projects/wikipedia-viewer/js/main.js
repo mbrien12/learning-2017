@@ -21,12 +21,11 @@ $("#searchbox").autocomplete({
 
         });
 
-        $(document).ready(function () {
-            $('#searchbox').on('autocompletechange change', function () {
-                var input = this.value
-                $('#results').html('You selected: ' + input);
-                console.log(input);
-            }).change();
+        // To save autocomplete selection 
+        $("#searchbox").autocomplete({
+            select: function (event, ui) {
+                console.log(ui);
+            }
         });
 
     }
