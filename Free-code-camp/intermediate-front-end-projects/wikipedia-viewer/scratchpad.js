@@ -85,3 +85,17 @@ console.log(search);
                 
             }).change();
         });
+
+
+
+                // new ajax call to search - DOESNT WORK :(
+
+
+                $("#submit").click(function () {
+
+                    $.ajax({
+                        url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm,
+                        dataType: "jsonp",
+                        success: function (data) {
+                            $('body').text(data);
+                        }

@@ -1,6 +1,6 @@
 
 
-//Autocomplete searchbox
+//Autocomplete searchbox from http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/ 
 $("#searchbox").autocomplete({
     source: function (request, response) {
         $.ajax({
@@ -15,17 +15,43 @@ $("#searchbox").autocomplete({
                 response(data[1]);
                 console.log(data[1]);
 
+
             }
+
 
 
 
         });
 
+
         // To save autocomplete selection 
         $("#searchbox").autocomplete({
             select: function (event, ui) {
                 var searchTerm = ui.item.label
-                console.log(searchTerm);
+                console.log(searchTerm)
+
+            
+
+                $.ajax({
+                    url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm,
+                    dataType: "jsonp",
+                    success: function (data) {
+                        console.log(data);
+                        for (var i = 0; i <= data[1].length - 1; i++) {
+                            var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a></li>';
+                            $("#results").append(pageLink);
+                        };
+                    }
+
+                })
+                
+
+
+
+    
+
+
+
             }
         });
 
@@ -35,9 +61,7 @@ $("#searchbox").autocomplete({
 
 
 
-// Need to store search term as variable and print out when click search
 
-// Use this variable to complete search term on wiki API > print to page
 
 // Random API button ( do last)
 
