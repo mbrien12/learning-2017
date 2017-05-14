@@ -95,6 +95,22 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: grey;
+}
+
 
 .center_container {
 display: flex;
@@ -107,11 +123,16 @@ justify-content: center;
     margin-top: 200px;
 }
 
-#search-box {
+#searchbox {
     width: 330px;
+    margin-right: 30px;
 }
 
+/* Results page*/
 
+li {
+    list-style: none;
+}
 
 
 

@@ -39,7 +39,7 @@ $("#searchbox").autocomplete({
                     success: function (data) {
                         console.log(data);
                         for (var i = 0; i <= data[1].length - 1; i++) {
-                            var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a></li>';
+                            var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a><p>' + data[2][i] + '</p></li>';
                             $("#results").append(pageLink);
                         };
 
