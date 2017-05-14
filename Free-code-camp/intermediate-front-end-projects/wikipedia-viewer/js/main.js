@@ -80,11 +80,3 @@ $("#searchbox").autocomplete({
 
 })
 
-
-
-
-
-
-
-// Random API button ( do last)
-
