@@ -134,7 +134,19 @@ li {
     list-style: none;
 }
 
+#results {
+    padding: 100px;
+}
 
+#title {
+    font-size: 2em;
+    font-weight: bold;
+    color: black;
+}
+
+#title:hover {
+    color: grey;
+}
 
 
 
