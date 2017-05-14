@@ -27,10 +27,11 @@ $("#searchbox").autocomplete({
         // To save autocomplete selection 
         $("#searchbox").autocomplete({
             select: function (event, ui) {
-                var searchTerm = ui.item.label
-                console.log(searchTerm)
+                var searchTerm = ui.item.label;
+                console.log(searchTerm);
 
-            
+
+
 
                 $.ajax({
                     url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm,
@@ -41,14 +42,21 @@ $("#searchbox").autocomplete({
                             var pageLink = '<li><a href="' + data[3][i] + '">' + data[1][i] + '</a></li>';
                             $("#results").append(pageLink);
                         };
+
+
                     }
 
                 })
-                
 
-
-
-    
+                $("#searchbox") //replaces content with new selection
+                    .change(function () {
+                        var str = "";
+                        $("#searchbox option:selected").each(function () {
+                            str += $(this).text() + " ";
+                        });
+                        $("#results").text(str);
+                    })
+                    .change();
 
 
 
@@ -57,6 +65,21 @@ $("#searchbox").autocomplete({
 
     }
 });
+
+
+
+// to clear input field  - BUT DOESN'T CLEAR LIST (but clicking search does?)
+$("#searchbox").autocomplete({
+    close: function (event, ui) {
+        // Close event fires when selection options closes
+        $('#searchbox')[0].value = ""; // Clear the input field 
+
+    },
+
+
+
+})
+
 
 
 
