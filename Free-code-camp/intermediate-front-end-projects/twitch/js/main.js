@@ -12,27 +12,34 @@ for (var i = 0; i < channel.length; i++) {
     $.ajax({
         url: twitchChannels + channel[i],
         datatype: "jsonp",
-        success: function (data) {
-            console.log(data);
-            var profile = '<img class = "profile" src=" ' + data.logo + '">';
-            var pageLink = '<a href="' + data.url + '"target="_blank">' + data.display_name + '</a>'
-            $("ul").append('<li>' + profile + pageLink + '</li>');
+        success: function (channel) {
+            console.log(channel);
+            var profile = '<img class = "profile" src=" ' + channel.logo + '">';
+            var pageLink = '<a href="' + channel.url + '"target="_blank">' + channel.display_name + '</a>'
+            var name = channel.display_name;
+            $("ul").append('<li class="profile">' + profile + pageLink + '</li>');
+            console.log(name);
+
+            // Check if online - NOT WORKING YET
+            $.ajax({
+                url: twitchStreams + channel[i],
+                datatype: "jsonp",
+                success: function (stream) {
+                    var nameStatus = stream.display_name;
+                    if (!channel.stream) {
+                        console.log("offline");
+                        console.log(stream);
+                        console.log (name, nameStatus);
+                        $(".status_check").append('<img class="status" src = "img/cross.png">')
+                        return;
+                    }
+
+                }
+            })
 
         }
     })
 
 
-    // Check if online
-    $.ajax({
-        url: twitchStreams + channel[i],
-        datatype: "jsonp",
-        success: function (data) {
-            if (!data.stream) {
-                console.log("yes");
-                
-                return;
-            }
 
-        }
-    })
 }
