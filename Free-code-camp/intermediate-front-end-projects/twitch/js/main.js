@@ -6,9 +6,10 @@ var twitchStreams = "https://wind-bow.glitch.me/twitch-api/streams/";
 var channel = ["medrybw", "ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
 for (var i = 0; i < channel.length; i++) {
+   
+  
 
-
-    // Display each channel in a list
+    // Display each channel in a list 
     $.ajax({
         url: twitchChannels + channel[i],
         datatype: "jsonp",
@@ -17,10 +18,10 @@ for (var i = 0; i < channel.length; i++) {
             var profile = '<img class = "profile" src=" ' + channel.logo + '">';
             var pageLink = '<a href="' + channel.url + '"target="_blank">' + channel.display_name + '</a>'
             var name = channel.display_name;
-            $("ul").append('<li class="profile">' + profile + pageLink + '</li>');
+            $("ul").append('<li>' + profile + pageLink + '</li>');
             console.log(name);
 
-            // Check if online - NOT WORKING YET
+            // Check if online - NOT WORKING YET - write up functions separately e.g. updateOfflineUsers... etc
             $.ajax({
                 url: twitchStreams + channel[i],
                 datatype: "jsonp",

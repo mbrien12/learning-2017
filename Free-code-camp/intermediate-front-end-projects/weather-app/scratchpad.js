@@ -73,3 +73,14 @@ https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&ke
             } else {
                 $('body').css('background', 'url(' + hot + ')');
             }
+
+
+     $(".temp").append('<span>' +celsiusRound + '<span class="metric">&#8451;</span></span>'); //displays on page
+
+
+           // FUNCTION TO CONVERT TO FAHRENHEIT ON CLICK
+            $(".metric").on('click', function () {
+                $(".temp").text(data.currently.temperature);
+                $(".metric").text(" F"); // Need to revert back to original state...!!?
+
+            })
